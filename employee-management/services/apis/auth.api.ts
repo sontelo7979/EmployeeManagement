@@ -1,4 +1,4 @@
-import { createApi } from "@reduxjs/toolkit/query";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithReAuth } from "@services/apis/base.query";
 import {
   ILoginRequest,
@@ -28,3 +28,8 @@ export const authApi = createApi({
     }),
   }),
 });
+
+export const {
+  useLoginMutation,
+  useRegisterMutation
+} = authApi 
