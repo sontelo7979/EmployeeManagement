@@ -31,27 +31,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <StoreProvider>
-            <AuthProvider>
-              {children}
-              <Toaster
-                position="top-left"
-                closeButton={true}
-                expand={true}
-                duration={3000}
-                richColors={true}
-                gap={4}
-                theme="light"
-              />
-            </AuthProvider>
-          </StoreProvider>
-        </ThemeProvider>
+        <StoreProvider>
+          <AuthProvider>
+            {children}
+            <Toaster
+              position="top-left"
+              closeButton={true}
+              expand={true}
+              duration={3000}
+              richColors={true}
+              gap={4}
+              theme="light"
+            />
+          </AuthProvider>
+        </StoreProvider>
       </body>
     </html>
   );
