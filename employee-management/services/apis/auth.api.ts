@@ -3,15 +3,15 @@ import { baseQueryWithReAuth } from "@services/apis/base.query";
 import {
   ILoginRequest,
   ILoginResponse,
-  IRegisterRequest,
-  IRegisterResponse,
+  IResponse,
+  IUser,
 } from "@services/types";
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: baseQueryWithReAuth,
   endpoints: (builder) => ({
-    login: builder.mutation<ILoginResponse, ILoginRequest>({
+    login: builder.mutation<IResponse<ILoginResponse>, ILoginRequest>({
       query: (body) => ({
         url: "/Auth/login",
         method: "POST",
@@ -19,17 +19,21 @@ export const authApi = createApi({
       }),
     }),
 
-    register: builder.mutation<IRegisterResponse, IRegisterRequest>({
-      query: (body) => ({
-        url: "/Auth/register",
+    logout: builder.mutation<IResponse<null>, void>({
+      query: () => ({
+        url: "/Auth/logout",
         method: "POST",
-        body,
+      }),
+    }),
+
+    getCurrent: builder.query<IResponse<IUser>, void>({
+      query: () => ({
+        url: "/Auth/current",
+        method: "GET",
       }),
     }),
   }),
 });
 
-export const {
-  useLoginMutation,
-  useRegisterMutation
-} = authApi 
+export const { useLoginMutation, useLazyGetCurrentQuery, useLogoutMutation } =
+  authApi;

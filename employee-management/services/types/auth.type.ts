@@ -4,7 +4,8 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface IRegisterRequest {
